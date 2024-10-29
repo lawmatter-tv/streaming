@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000; /* Fond noir */
+            background-color: #000;
             color: #fff;
             margin: 0;
             padding: 0;
@@ -96,29 +96,22 @@
         }
 
         .small-button {
-            background-color: #FFD700; /* Jaune */
-            color: #000; /* Écriture noire */
+            background-color: #FFD700;
+            color: #000;
             border: none;
             border-radius: 5px;
             padding: 5px 10px;
-            font-size: 12px; /* Texte plus petit */
+            font-size: 12px;
             cursor: pointer;
             margin: 0 5px;
             display: flex;
             align-items: center;
-            opacity: 0;
+            opacity: 1; /* Rendre visible par défaut */
             transition: opacity 0.3s ease;
         }
 
         .small-button span {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .small-button i {
-            opacity: 0;
             margin-left: 5px;
-            transition: opacity 0.6s ease;
         }
 
         .copyright {
@@ -135,7 +128,6 @@
 
     <div class="video-player">
         <iframe id="videoPlayer" 
-                src="https://www.youtube.com/embed/videoseries?list=PLKjjURZYdaOBzvY3uL0vbDYXJlibiECvO&autoplay=1&controls=0&mute=0&showinfo=0" 
                 allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
                 allowfullscreen></iframe>
         <div class="clock" id="clock"></div>
@@ -143,19 +135,15 @@
     </div>
 
     <div class="actions">
-        <!-- Icône plein écran -->
         <button class="icon-button" onclick="toggleFullScreen()">
             <i class="fas fa-expand"></i>
         </button>
-
-        <!-- Icône pour partager la diffusion -->
         <button class="icon-button" onclick="shareLink()">
             <i class="fas fa-share-alt"></i>
         </button>
     </div>
 
     <div class="small-buttons">
-        <!-- Boutons stylisés et animés automatiquement -->
         <button class="small-button" id="btn1" onclick="window.open('https://me.lygosapp.com/buy/LawMatter_store', '_blank')">
             <span>Fait un don</span>
             <i class="fas fa-hand-holding-usd"></i>
@@ -179,7 +167,6 @@
     </div>
 
     <script>
-        // Fonction pour mettre en plein écran
         function toggleFullScreen() {
             const video = document.getElementById('videoPlayer');
             if (!document.fullscreenElement) {
@@ -191,7 +178,6 @@
             }
         }
 
-        // Fonction pour partager le lien de la diffusion
         function shareLink() {
             const url = window.location.href;
             navigator.clipboard.writeText(url).then(() => {
@@ -201,59 +187,61 @@
             });
         }
 
-        // Afficher l'heure actuelle
         function updateClock() {
             const now = new Date();
             const options = { hour: '2-digit', minute: '2-digit' };
             document.getElementById('clock').textContent = now.toLocaleTimeString([], options);
         }
 
-        setInterval(updateClock, 1000); // Mettre à jour l'heure chaque seconde
+        setInterval(updateClock, 1000);
 
-        // Fonction d'animation automatique des boutons
-        function animateButtons() {
-            const buttons = [
-                { id: "btn1", delay: 1000 },
-                { id: "btn2", delay: 2000 },
-                { id: "btn3", delay: 3000 },
-                { id: "btn4", delay: 4000 }
-            ];
-
-            buttons.forEach(button => {
-                setTimeout(() => {
-                    const btn = document.getElementById(button.id);
-                    btn.style.opacity = 1;
-                    btn.querySelector('span').style.opacity = 1;
-                    btn.querySelector('i').style.opacity = 1;
-                }, button.delay);
-            });
-        }
-
-        // Démarrer l'animation des boutons au chargement de la page
-        window.onload = animateButtons;
-
-        // Grille horaire pour les vidéos programmées (aujourd'hui samedi)
-        const scheduleForSaturday = [
-            { time: "08:30", videoId: "https://www.youtube.com/embed/?listType=playlist&list=PLKjjURZYdaOArKe7D9AU45x-DjGjXm-hn&autoplay=1&shuffle=1&loop=1&vq=hd2160" },
-            { time: "14:00", videoId: "https://www.youtube.com/embed/?listType=playlist&list=PLKjjURZYdaOArKe7D9AU45x-DjGjXm-hn&autoplay=1&shuffle=1&loop=1&vq=hd2160" },
-            { time: "19:00", videoId: "https://www.youtube.com/embed/?listType=playlist&list=PLKjjURZYdaOArKe7D9AU45x-DjGjXm-hn&autoplay=1&shuffle=1&loop=1&vq=hd2160" }
-        ];
-
-        // Fonction pour vérifier l'heure actuelle et changer la vidéo si nécessaire
+        const schedule = {
+    crimesEtEnquete: [
+        "https://www.youtube.com/embed/lEZnVQOCrxI?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/gE5UE3wXufE?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/bStgp8ERsy4?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/fNx_VBU8NQc?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/rno_QO6yEL4?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/8C6uIT9AhLk?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/vSN_TggJa5g?autoplay=1&controls=0"
+    ],
+    actualite: [
+        "https://www.youtube.com/embed/l8PMl7tUDIE?si=Qgd-cZgHz0Kh11lx?autoplay=1&controls=0"
+    ],
+    film: [
+        "https://www.youtube.com/embed/ukOzKY7WX-M?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/KuKIzMFCfIU?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/jHyWQ4S2o1M?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/-wHLsG_yNcM?autoplay=1&controls=0",
+        "https://www.youtube.com/embed/BN2HouYpCsA?autoplay=1&controls=0"
+    ]
+};
+const defaultVideoUrl = "https://youtube.com/embed/playlist?list=PLKjjURZYdaOBmEdHupEmX7iMordNoGsP7&si=6ZCAsJvmK-s_EPFn?autoplay=1&controls=0"; // Remplacez par votre URL de vidéo par défaut
         function checkSchedule() {
             const now = new Date();
-            const currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const currentHour = now.getHours();
 
-            for (const entry of scheduleForSaturday) {
-                if (entry.time === currentTime) {
-                    document.getElementById('videoPlayer').src = entry.videoId;
-                    break;
-                }
+            let videoUrl; 
+            if (currentHour >= 4 && currentHour < 10) {
+                // Le matin : actualité
+                videoUrl = schedule.actualite[Math.floor(Math.random() * schedule.actualite.length)];
+            } else if (currentHour >= 12 && currentHour < 18) {
+                // L'après-midi : film
+                videoUrl = schedule.film[Math.floor(Math.random() * schedule.film.length)];
+            } else {
+                // Le soir : crimes et enquêtes
+                videoUrl = schedule.crimesEtEnquete[Math.floor(Math.random() * schedule.crimesEtEnquete.length)];
             }
+
+            // Charger la vidéo dans l'iframe
+            document.getElementById("videoPlayer").src = videoUrl;
         }
 
-        // Vérifie le programme toutes les minutes
-        setInterval(checkSchedule, 60000);
+        // Vérifier l'horaire toutes les heures pour mettre à jour la vidéo automatiquement
+        setInterval(checkSchedule, 3600000); // 1 heure en millisecondes
+
+        // Lancer la première vérification de l'horaire au chargement de la page
+        checkSchedule();
     </script>
 </body>
 </html>
