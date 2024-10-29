@@ -1,264 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Law Matter TV</title>
+    <title>Streaming Juridique - Law Matter TV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #000;
+            background-color: #000; /* Fond noir */
             color: #fff;
-        }
-        header {
-            background-color: #000;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header h4 {
-            color: #FFCC00;
-            margin: 0;
-        }
-        nav ul {
-            list-style-type: none;
             margin: 0;
             padding: 0;
-            display: flex;
-        }
-        nav ul li {
-            margin-left: 20px;
-        }
-        nav ul li a {
-            color: #FFCC00;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .main-banner {
             position: relative;
-            background-image: url('banner-image.jpg'); /* Replace with the banner image you want */
-            background-size: cover;
-            background-position: center;
-            height: 400px;
+            overflow: hidden;
         }
-        .main-banner .content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .site-name {
+            font-size: 24px;
             color: #fff;
         }
-        .main-banner h2 {
-            font-size: 3rem;
-        }
-        .btn-watch-now, .btn-live-now {
-            background-color: #FFCC00;
-            color: #000;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .categories {
-            padding: 20px;
-        }
-        .category {
-            margin-bottom: 40px;
-        }
-        .category h3 {
-            font-size: 2rem;
-            color: #FFCC00;
-        }
-        .category .video-grid {
+
+        .video-player {
             display: flex;
-            overflow-x: scroll;
-        }
-        .category .video-grid .video-item {
-            margin-right: 20px;
-        }
-        .category .video-grid .video-item img {
-            width: 250px;
-            height: 150px;
-            border-radius: 10px;
-        }
-        .category .video-grid .video-item p {
-            margin-top: 10px;
-        }
-        footer {
-            background-color: #000;
-            padding: 20px;
-            text-align: center;
-            color: #FFCC00;
-        }
-        footer form {
-            margin-top: 20px;
-        }
-        footer input[type="email"] {
-            padding: 10px;
-            margin-right: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-        footer input[type="submit"] {
-            background-color: #FFCC00;
-            color: #000;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .forum {
+            justify-content: center;
+            align-items: center;
+            position: relative;
             margin: 20px 0;
         }
-        .forum form {
+
+        .clock {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 16px;
+            z-index: 10;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .direct-text {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            background-color: rgba(255, 105, 180, 1);
+            color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border: none;
+            z-index: 1;
+        }
+
+        .actions {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            margin: 20px 0;
         }
-        .forum input, .forum textarea {
-            margin-bottom: 10px;
-            padding: 10px;
+
+        .icon-button {
+            background-color: transparent;
+            color: #fff;
             border: none;
-            border-radius: 5px;
-        }
-        .forum button {
-            background-color: #FFCC00;
-            color: #000;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
+            font-size: 24px;
             cursor: pointer;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .icon-button:hover {
+            color: #ddd;
+        }
+
+        .small-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 20px 0;
+        }
+
+        .small-button {
+            background-color: #FFD700; /* Jaune */
+            color: #000; /* Écriture noire */
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 12px; /* Texte plus petit */
+            cursor: pointer;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .small-button span {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .small-button i {
+            opacity: 0;
+            margin-left: 5px;
+            transition: opacity 0.6s ease;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-<header>
-    <h1>Law Matter TV : La Télévision Juridique</h1>
-    <nav>
-    </nav>
-</header>
- <div class="main-banner">
-        <div class="content">
-            <a href="#" class="btn-watch-now">En Direct</a>
-        </div>
+    <div class="header">
+        <div class="site-name">Law Matter TV</div>
     </div>
 
-    <!-- Lecteur vidéo pour afficher la vidéo en direct -->
-    <div class="video-container">
-        <iframe id="youtube-player" src="https://www.youtube.com/embed/?listType=playlist&list=PLKjjURZYdaOArKe7D9AU45x-DjGjXm-hn&autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="video-player">
+        <iframe id="videoPlayer" 
+                src="https://www.youtube.com/embed/videoseries?list=PLKjjURZYdaOBzvY3uL0vbDYXJlibiECvO&autoplay=1&controls=0&mute=0&showinfo=0" 
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
+                allowfullscreen></iframe>
+        <div class="clock" id="clock"></div>
+        <div class="direct-text" id="directText">TV⚖️🎗️</div>
+    </div>
+
+    <div class="actions">
+        <!-- Icône plein écran -->
+        <button class="icon-button" onclick="toggleFullScreen()">
+            <i class="fas fa-expand"></i>
+        </button>
+
+        <!-- Icône pour partager la diffusion -->
+        <button class="icon-button" onclick="shareLink()">
+            <i class="fas fa-share-alt"></i>
+        </button>
+    </div>
+
+    <div class="small-buttons">
+        <!-- Boutons stylisés et animés automatiquement -->
+        <button class="small-button" id="btn1" onclick="window.open('https://me.lygosapp.com/buy/LawMatter_store', '_blank')">
+            <span>Fait un don</span>
+            <i class="fas fa-hand-holding-usd"></i>
+        </button>
+        <button class="small-button" id="btn2" onclick="window.open('https://wa.me/2250143692215?text=J%27aimerais%20en%20savoir%20davantage%20sur%20le%20droit%20de%20diffusion%20d%27une%20publicité%20sur%20votre%20chaîne', '_blank')">
+            <span>Faire une publicité</span>
+            <i class="fas fa-bullhorn"></i>
+        </button>
+        <button class="small-button" id="btn3" onclick="window.open('https://wa.me/2250143692215?text=J%27aimerais%20en%20savoir%20davantage%20sur%20la%20création,%20le%20devis%20et%20le%20droit%20de%20diffusion', '_blank')">
+            <span>Créer une émission</span>
+            <i class="fas fa-tv"></i>
+        </button>
+        <button class="small-button" id="btn4" onclick="window.open('https://lawmattertv.taplink.ws/', '_blank')">
+            <span>Télécharger application</span>
+            <i class="fas fa-download"></i>
+        </button>
+    </div>
+
+    <div class="copyright">
+        &copy; 2024 Law Matter TV. Tous droits réservés.
     </div>
 
     <script>
-        // Fonction appelée lorsque l'API YouTube IFrame est prête
-        function onYouTubeIframeAPIReady() {
-            var player = new YT.Player('youtube-player', {
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        // Fonction appelée lorsque l'état du lecteur change
-        function onPlayerStateChange(event) {
-            if (event.data === YT.PlayerState.ENDED) {
-                var player = document.getElementById('youtube-player');
-                player.src += "&autoplay=1"; // Redémarre la playlist
+        // Fonction pour mettre en plein écran
+        function toggleFullScreen() {
+            const video = document.getElementById('videoPlayer');
+            if (!document.fullscreenElement) {
+                video.requestFullscreen().catch(err => {
+                    alert(`Erreur lors de l'activation du mode plein écran : ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
             }
         }
 
-        // Chargement de l'API YouTube IFrame
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        // Fonction pour partager le lien de la diffusion
+        function shareLink() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert("Lien copié dans le presse-papier.");
+            }).catch(err => {
+                alert(`Erreur lors de la copie du lien : ${err}`);
+            });
+        }
+
+        // Afficher l'heure actuelle
+        function updateClock() {
+            const now = new Date();
+            const options = { hour: '2-digit', minute: '2-digit' };
+            document.getElementById('clock').textContent = now.toLocaleTimeString([], options);
+        }
+
+        setInterval(updateClock, 1000); // Mettre à jour l'heure chaque seconde
+
+        // Fonction d'animation automatique des boutons
+        function animateButtons() {
+            const buttons = [
+                { id: "btn1", delay: 1000 },
+                { id: "btn2", delay: 2000 },
+                { id: "btn3", delay: 3000 },
+                { id: "btn4", delay: 4000 }
+            ];
+
+            buttons.forEach(button => {
+                setTimeout(() => {
+                    const btn = document.getElementById(button.id);
+                    btn.style.opacity = 1;
+                    btn.querySelector('span').style.opacity = 1;
+                    btn.querySelector('i').style.opacity = 1;
+                }, button.delay);
+            });
+        }
+
+        // Démarrer l'animation des boutons au chargement de la page
+        window.onload = animateButtons;
+
+        // Grille horaire pour les vidéos programmées (aujourd'hui samedi)
+        const scheduleForSaturday = [
+            { time: "08:30", videoId: "https://www.youtube.com/embed/?listType=playlist&list=PLKjjURZYdaOArKe7D9AU45x-DjGjXm-hn&autoplay=1&shuffle=1&loop=1&vq=hd2160" },
+            { time: "14:00", videoId: "https://www.youtube.com/embed/?listType=playlist&list=PLKjjURZYdaOArKe7D9AU45x-DjGjXm-hn&autoplay=1&shuffle=1&loop=1&vq=hd2160" },
+            { time: "19:00", videoId: "https://www.youtube.com/embed/?listType=playlist&list=PLKjjURZYdaOArKe7D9AU45x-DjGjXm-hn&autoplay=1&shuffle=1&loop=1&vq=hd2160" }
+        ];
+
+        // Fonction pour vérifier l'heure actuelle et changer la vidéo si nécessaire
+        function checkSchedule() {
+            const now = new Date();
+            const currentTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            for (const entry of scheduleForSaturday) {
+                if (entry.time === currentTime) {
+                    document.getElementById('videoPlayer').src = entry.videoId;
+                    break;
+                }
+            }
+        }
+
+        // Vérifie le programme toutes les minutes
+        setInterval(checkSchedule, 60000);
     </script>
-</body>
-</html>
-
-<section class="categories">
-    <!-- Dossiers Criminels -->
-    <div class="category">
-        <h3>Dossiers Criminels</h3>
-        <div class="video-grid">
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=playlist&list=PLKjjURZYdaODjPVphdBOkzF0KuGslchIF" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Dossiers Criminels Playlist 1</p>
-            </div>
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=playlist&list=PLo2KopGHIN3r5wa8cAGSVj6EDlKyUxpLi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Dossiers Criminels Playlist 2</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Films et Séries -->
-    <div class="category">
-        <h3>Films et Séries</h3>
-        <div class="video-grid">
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed/M0603ztkX1U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Film</p>
-            </div>
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=playlist&list=PLDe0CguuqcMAOpwaCRgblXyDp16SH8Bz0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Films et Séries Playlist</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Formation -->
-    <div class="category">
-        <h3>Formation</h3>
-        <div class="video-grid">
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=playlist&list=PLMo3GFNAZFt42SES9wyDtk-Y9j2PhwETE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Formation Playlist 1</p>
-            </div>
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=playlist&list=PLMo3GFNAZFt731Dn2cP1jHhK-HIsLF0Zb" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Formation Playlist 2</p>
-            </div>
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=playlist&list=PL0JgU9zLKXAEBMJZAl4IIdqESwmd20bQX" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Formation Playlist 3</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Actualités -->
-    <div class="category">
-        <h3>Actualités</h3>
-        <div class="video-grid">
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=user_uploads&list=FRANCE24" frameborder="0<iframe width="250" height="150" src="https://www.youtube.com/embed?listType=user_uploads&list=FRANCE24" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Actualités Playlist 1</p>
-            </div>
-            <div class="video-item">
-                <iframe width="250" height="150" src="https://www.youtube.com/embed?listType=user_uploads&list=BBCNews" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <p>Actualités Playlist 2</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>Newsletter</p>
-    <form action="#" method="post">
-        <input type="email" name="email" placeholder="Entrez votre email" required>
-        <input type="submit" value="S'abonner">
-    </form>
-    <div class="forum">
-        <h3>Contact</h3>
-        <form action="#" method="post">
-            <input type="text" name="name" placeholder="Votre nom" required>
-            <textarea name="message" placeholder="Votre message" rows="4" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
-    
-    <p>&copy; 2024 Law Matter TV. Tous droits réservés.</p>
-</footer>
-
 </body>
 </html>
