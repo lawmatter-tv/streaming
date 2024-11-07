@@ -51,15 +51,16 @@
         }
 
         .direct-text {
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            background-color: rgba(225, 69, 0, 0.9);
-            color: #fff;
-            padding: 5px;
-            border-radius: 5px;
-            font-weight: bold;
-            z-index: 10;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    
+    color: rgb(0, 114, 188); /* Texte en bleu ciel */
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 10;
+
         }
 
         iframe {
@@ -132,8 +133,7 @@
                 allow="autoplay; fullscreen; picture-in-picture; encrypted-media" 
                 allowfullscreen></iframe>
         <div class="clock" id="clock" onclick="alert('Law Matter TV fonctionne selon le fuseau horaire GMT+0')"></div>
-        <div class="direct-text" id="directText" onclick="alert('Law Matter TV Célèbre HALLOWEEN 👻 🎃')">TV⚖️🎃</div>
-    </div>
+        <div class="direct-text" id="directText" onclick="alert('Law Matter TV Célèbre HALLOWEEN 👻 🎃')">ACTUS</div>
     </div>
 
     <div class="actions">
@@ -197,113 +197,23 @@
 
         setInterval(updateClock, 1000);
 
-       const schedule = {
-    actualitesFrancais: [
-        "https://www.youtube.com/embed/l8PMl7tUDIE?autoplay=1&controls=0",
-    ],
-    documentaire: [
-        "https://www.youtube.com/embed/JNuZEvKICmU?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/5mIhLDCY1fQ?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/1Hv8znLmG4I?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/Jxe170vLy48?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/xux_F6hVbZc?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/6QMNNQWhhMk?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/jZrZPPqKuWw?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/8-jXHTNEnT0?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/yxoc6K-lDzg?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/ovKJG2G9NmE?autoplay=1&controls=0"
-    ],
-    decryptageJuridique: [
-        "https://www.youtube.com/embed/WtL3EihN_bY?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/Dudo9tHUklk?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/rKvJN63YVqw?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/Pyf8M-8U2fg?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/D4XCSZ1gko8?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/6Q_x1aVV7tA?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/F4Kxt1QxW3A?autoplay=1&controls=0"
-    ],
-    filmsSeries: [
-        "https://www.youtube.com/embed/ukOzKY7WX-M?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/KuKIzMFCfIU?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/jHyWQ4S2o1M?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/-wHLsG_yNcM?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/BN2HouYpCsA?autoplay=1&controls=0"
-    ],
-    ecoleFormationDroit: [
-        "https://www.youtube.com/embed/wAmUsVhtpPc?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/Vns5HSFBTMQ?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/w6qpXdT942M?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/videoseries?list=PLMo3GFNAZFt4mVqyPTpI8HzvS7iydpHha&autoplay=1&controls=0",
-        "https://www.youtube.com/embed/videoseries?list=PLMo3GFNAZFt7kITGxTUkQNuer28dr5HGn&autoplay=1&controls=0",
-    ],
-    actualitesAnglais: [
-        "https://www.youtube.com/embed/Ap-UM1O9RBU?autoplay=1&controls=0"
-    ],
-    faitDivers: [
-        "https://www.youtube.com/embed/lEZnVQOCrxI?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/gE5UE3wXufE?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/bStgp8ERsy4?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/fNx_VBU8NQc?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/rno_QO6yEL4?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/8C6uIT9AhLk?autoplay=1&controls=0",
-        "https://www.youtube.com/embed/vSN_TggJa5g?autoplay=1&controls=0",  
+        const schedule = {
+            actualites: [
+                "https://www.youtube.com/embed/l8PMl7tUDIE?autoplay=1&controls=0",
+                "https://www.youtube.com/embed/Ap-UM1O9RBU?autoplay=1&controls=0"
+            ]
+        };
 
-"https://www.youtube.com/embed/lZHR5Nuvz6g?autoplay=1&controls=0",
+        function checkSchedule() {
+            const videoUrl = schedule.actualites[Math.floor(Math.random() * schedule.actualites.length)];
+            document.getElementById("videoPlayer").src = videoUrl;
+        }
 
-"https://www.youtube.com/embed/TtTESfV8CIk?autoplay=1&controls=0",
+        // Vérifier l'horaire toutes les heures pour mettre à jour la vidéo automatiquement
+        setInterval(checkSchedule, 3600000); // 1 heure en millisecondes
 
-"https://www.youtube.com/embed/PmD8ozT5QfM?autoplay=1&controls=0",
-
-"https://www.youtube.com/embed/_hczvcOPkmo?autoplay=1&controls=0",
-
-"https://www.youtube.com/embed/9PujJI_Q49k?autoplay=1&controls=0",
-
-"https://www.youtube.com/embed/nIkG1Sv4wPY?autoplay=1&controls=0",
-
-"https://www.youtube.com/embed/eVI86TeUm0U?autoplay=1&controls=0",
-
-"https://www.youtube.com/embed/SFFcVsD41eI?autoplay=1&controls=0",
-
-"https://www.youtube.com/embed/a24qzyjUV2c?autoplay=1&controls=0"
-]
-};
-
-const defaultVideoUrl = "https://youtube.com/embed/playlist?list=PLKjjURZYdaOBmEdHupEmX7iMordNoGsP7&autoplay=1&controls=0";
-
-function checkSchedule() {
-    const now = new Date();
-    const currentHour = now.getHours();
-
-    let videoUrl;
-    if (currentHour >= 5 && currentHour < 7) {
-        videoUrl = schedule.actualitesFrancais[Math.floor(Math.random() * schedule.actualitesFrancais.length)];
-    } else if (currentHour >= 8 && currentHour < 11) {
-        videoUrl = schedule.documentaire[Math.floor(Math.random() * schedule.documentaire.length)];
-    } else if (currentHour >= 12 && currentHour < 14) {
-        videoUrl = schedule.decryptageJuridique[Math.floor(Math.random() * schedule.decryptageJuridique.length)];
-    } else if (currentHour >= 14 && currentHour < 17) {
-        videoUrl = schedule.filmsSeries[Math.floor(Math.random() * schedule.filmsSeries.length)];
-    } else if (currentHour >= 17 && currentHour < 19) {
-        videoUrl = schedule.ecoleFormationDroit[Math.floor(Math.random() * schedule.ecoleFormationDroit.length)];
-    } else if (currentHour >= 19 && currentHour < 21) {
-        videoUrl = schedule.actualitesAnglais[Math.floor(Math.random() * schedule.actualitesAnglais.length)];
-    } else if (currentHour >= 21 && currentHour < 23) {
-        videoUrl = schedule.faitDivers[Math.floor(Math.random() * schedule.faitDivers.length)];
-    } else {
-        // Si aucune catégorie ne correspond, choisir une vidéo aléatoire de toutes les catégories
-        const allVideos = Object.values(schedule).flat();
-        videoUrl = allVideos[Math.floor(Math.random() * allVideos.length)];
-    }
-
-    // Charger la vidéo dans l'iframe
-    document.getElementById("videoPlayer").src = videoUrl;
-}
-
-// Vérifier l'horaire toutes les heures pour mettre à jour la vidéo automatiquement
-setInterval(checkSchedule, 3600000); // 1 heure en millisecondes
-
-// Lancer la première vérification de l'horaire au chargement de la page
-checkSchedule();
+        // Lancer la première vérification de l'horaire au chargement de la page
+        checkSchedule();
     </script>
 </body>
 </html>
