@@ -135,14 +135,39 @@
             color: #fff;
             border-radius: 5px;
             cursor: pointer;
+        
         }
-
         .footer-section {
             text-align: center;
             margin: 20px 0;
             font-size: 12px;
             color: #0072bc;
         }
+        .small-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            margin: 20px 0;
+        }
+
+        .small-button {
+            background-color: #0072bc;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            margin: 0 5px;
+            display: flex;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .small-button span {
+            margin-left: 5px;
+        }
+        
 
         /* Changer la couleur des titres (h3) en bleu */
         h3 {
@@ -179,7 +204,29 @@
         <iframe id="videoPlayer" src="" allowfullscreen></iframe>
         <div class="scroll-banner" id="scrollBanner"></div>
     </div>
-
+    
+    
+    </div>
+    
+<div class="small-buttons">
+        <button class="small-button" id="btn1" onclick="window.open('https://me.lygosapp.com/buy/LawMatter_store', '_blank')">
+            <span>Fait un don</span>
+            <i class="fas fa-hand-holding-usd"></i>
+        </button>
+        <button class="small-button" id="btn2" onclick="window.open('https://wa.me/2250143692215?text=J%27aimerais%20en%20savoir%20davantage%20sur%20le%20droit%20de%20diffusion%20d%27une%20publicité%20sur%20votre%20chaîne', '_blank')">
+            <span>Faire une publicité</span>
+            <i class="fas fa-bullhorn"></i>
+        </button>
+        <button class="small-button" id="btn3" onclick="window.open('https://wa.me/2250143692215?text=J%27aimerais%20en%20savoir%20davantage%20sur%20la%20création,%20le%20devis%20et%20le%20droit%20de%20diffusion', '_blank')">
+            <span>Créer une émission</span>
+            <i class="fas fa-tv"></i>
+        </button>
+        <button class="small-button" id="btn4" onclick="window.open('https://lawmattertv.taplink.ws/', '_blank')">
+            <span>Télécharger application</span>
+            <i class="fas fa-download"></i>
+        </button>
+    </div>
+    
     <script>
     // Dictionnaire des chaînes avec vidéos aléatoires
     const channels = {
@@ -256,9 +303,9 @@
     });
     </script>
 
-    <div class="footer-section">
+    <div class="footer-section"
         <p>&copy; 2024 Law Matter TV | Tous droits réservés. 
-        <a href="https://lawmattertv.taplink.ws">télécharger application</a></p>
+        </p>
     </div>
 </body>
 </html>
