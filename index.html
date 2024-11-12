@@ -6,32 +6,31 @@
     <title>Streaming Juridique - Law Matter TV</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-      
-    /* Styles généraux */
-    body {
-        font-family: Arial, sans-serif;
-        color: #000;
-        margin: 0;
-        padding: 0;
-    }
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
 
-    /* En-tête avec image de fond */
-    .header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        background-image: url('https://res.cloudinary.com/donkwo18z/image/upload/v1731369981/20241112_000546_0000_ui992g.png'); /* Remplacez URL_DE_VOTRE_IMAGE par le lien de votre image */
-        background-size: cover;
-        background-position: center;
-        color: #fff; /* Texte en blanc pour contraste */
-    }
+        /* En-tête avec image de fond */
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: url('https://res.cloudinary.com/donkwo18z/image/upload/v1731369981/20241112_000546_0000_ui992g.png'); /* Remplacez URL_DE_VOTRE_IMAGE par le lien de votre image */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Texte en blanc pour contraste */
+        }
 
-    .site-name {
-        font-size: 34px;
-        font-weight: bold;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre pour une meilleure lisibilité */
-    }
+        .site-name {
+            font-size: 34px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre pour une meilleure lisibilité */
+        }
 
         /* Vignettes de chaînes avec des bordures colorées */
         .thumbnail-container {
@@ -109,7 +108,6 @@
             text-align: center;
             overflow: hidden;
             animation: scrollBanner 20s linear 2;
-            
             animation-delay: 10s;
         }
 
@@ -146,12 +144,10 @@
             color: #0072bc;
         }
 
-       
-        }
-        
         /* Changer la couleur des titres (h3) en bleu */
         h3 {
             color: #0072bc;
+        }
     </style>
 </head>
 <body>
@@ -183,7 +179,6 @@
         <iframe id="videoPlayer" src="" allowfullscreen></iframe>
         <div class="scroll-banner" id="scrollBanner"></div>
     </div>
-    
 
     <script>
     // Dictionnaire des chaînes avec vidéos aléatoires
@@ -221,52 +216,49 @@
                 "https://www.youtube.com/embed/bStgp8ERsy4?autoplay=1&controls=0",
                 "https://www.youtube.com/embed/8C6uIT9AhLk?autoplay=1&controls=0",
                 "https://www.youtube.com/embed/lZHR5Nuvz6g?autoplay=1&controls=0",
-                "https://www.youtube.com/embed/TtTESfV8CIk?autoplay=1&controls=0",
-                "https://www.youtube.com/embed/PmD8ozT5QfM?autoplay=1&controls=0"
+                "https://www.youtube.com/embed/TtW6W9UmdNo?autoplay=1&controls=0"
             ],
-            bannerText: "Nos documentaires exclusifs"
+            bannerText: "Découvrez nos documentaires"
         }
     };
 
-    // Fonction pour ouvrir la chaîne et jouer une vidéo aléatoire
-    function openChannel(channelName) {
-        const channel = channels[channelName];
-        const videoPlayer = document.getElementById('videoPlayer');
-        const videoPlayerContainer = document.getElementById('videoPlayerContainer');
-        const channelLogo = document.getElementById('channelLogo');
-        const clock = document.getElementById('clock');
-        const scrollBanner = document.getElementById('scrollBanner');
+    let currentChannel = null;
+    let videoIndex = 0;
 
-        // Charger le logo et activer le conteneur du lecteur vidéo
-        channelLogo.src = channel.logo;
-        videoPlayerContainer.classList.add('active');
-        
-        // Afficher l'heure
-        setInterval(() => {
-            const currentTime = new Date().toLocaleTimeString();
-            clock.textContent = currentTime;
-        }, 1000);
+    // Fonction pour ouvrir une chaîne
+    function openChannel(channel) {
+        currentChannel = channels[channel];
+        videoIndex = Math.floor(Math.random() * currentChannel.filmsSeries.length);
 
-        // Afficher la bannière défilante
-        scrollBanner.textContent = channel.bannerText;
+        document.getElementById("videoPlayerContainer").classList.add("active");
+        document.getElementById("videoPlayer").src = currentChannel.filmsSeries[videoIndex];
+        document.getElementById("channelLogo").src = currentChannel.logo;
+        document.getElementById("scrollBanner").innerText = currentChannel.bannerText;
 
-        // Fonction pour jouer une vidéo aléatoire de cette chaîne uniquement
-        function playRandomVideo() {
-            const randomIndex = Math.floor(Math.random() * channel.filmsSeries.length);
-            videoPlayer.src = channel.filmsSeries[randomIndex];
-        }
-
-        // Lancer une première vidéo aléatoire pour la chaîne sélectionnée
-        playRandomVideo();
-
-        // Changer de vidéo toutes les 30 minutes pour cette chaîne uniquement
-        setInterval(playRandomVideo, 60000); // Intervalle de 1 heure 
+        startClock();
     }
-</script>
-        
-    <!-- Footer -->
+
+    // Fonction pour démarrer l'horloge
+    function startClock() {
+        setInterval(function() {
+            let now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("clock").innerText = `${hours}:${minutes}:${seconds}`;
+        }, 1000);
+    }
+
+    // Fonction pour passer à la vidéo suivante après la fin de la vidéo actuelle
+    document.getElementById("videoPlayer").addEventListener("ended", function() {
+        videoIndex = Math.floor(Math.random() * currentChannel.filmsSeries.length);
+        document.getElementById("videoPlayer").src = currentChannel.filmsSeries[videoIndex];
+    });
+    </script>
+
     <div class="footer-section">
-        <p>&copy; 2024 Law Matter TV. Tous droits réservés. <br> <a href="https://lawmattertv.taplink.ws">télécharger application</a></p>
+        <p>&copy; 2024 Law Matter TV | Tous droits réservés. 
+        <a href="https://lawmattertv.taplink.ws">télécharger application</a></p>
     </div>
 </body>
 </html>
